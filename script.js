@@ -10,14 +10,16 @@ class App {
     }
     render (){
         this.container.innerHTML = '' //5czyszczenie kontenera 
-        this.renderInput('number')
-        this.renderInput('type') //10wywoływanie inputa gdzie i ile razy, w tym przypadku x2, i nadanie typów
+        this.renderInput('number', 'numberOfUsers')
+        this.renderInput('type', 'genderOfUsers') //10wywoływanie inputa gdzie i ile razy, w tym przypadku x2, i nadanie typów// 14 przypisanie numbers and gender
                                     
         
     }
-    renderInput(type){
+    renderInput(type,propName){ // 14 najpeirw type, potem name po kroku 13
         const input = document.createElement('input') // 7tworzenie inputa
         input.setAttribute('type', type) // 9nadanie typu inputowi
+        input.value.this[propName]     //13przypisanie wartości this numberofusers //15 przypisanie własciwoani w obiekcie
+
         input.addEventListener(
             'input',
             () => this.numberOfUsers = event.target.value //12 dobieramy się do numberofusers
@@ -29,3 +31,5 @@ class App {
     
     }
 }
+
+//odwołanie do właściowości w obiekcie w [] np car[propName] (print screen!!!)
