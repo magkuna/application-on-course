@@ -16,8 +16,18 @@ class App {
         this.container.innerHTML = '' //5czyszczenie kontenera 
         this.renderInput('number', 'numberOfUsers')
         this.renderInput('type', 'genderOfUsers') //10wywoływanie inputa gdzie i ile razy, w tym przypadku x2, i nadanie typów// 14 przypisanie numbers and gender
-        this.renderButton('Załaduj', () => { }) // 19 odniesienie do renderButton                           
+        this.renderButton('Załaduj', this.loadUsers) // 19 odniesienie do renderButton // 23 odniesienie z loadUSers                      
+        
+    }
+    renderButton(label, onClick) { // 16tworzenie przycisku (to co napisane, to co bedzie robił)
+        const button = document.createElement('button') // 17 tworzenie buttona 
+        button.innerText = label // 18
 
+        button.addEventListener(
+            'click',
+            onClick
+        )
+        this.container.appendChild(button) // 18 tworzenie akcji i dodawanie go do kontenera 
     }
     renderInput(type, propName) { // 14 najpeirw type, potem name po kroku 13 (krok 15)
         const input = document.createElement('input') // 7tworzenie inputa
@@ -39,16 +49,6 @@ class App {
 
     }
 
-    renderButton(label, onClick) { // 16tworzenie przycisku (to co napisane, to co bedzie robił)
-        const button = document.createElement('button') // 17 tworzenie buttona 
-        button.innerText = label // 18
-
-        button.addEventListener(
-            'click',
-            onClick
-        )
-        this.container.appendChild(button) // 18 tworzenie akcji i dodawanie go do kontenera 
-    }
 
 }
 
