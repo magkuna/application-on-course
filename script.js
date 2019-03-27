@@ -22,7 +22,10 @@ class App {
 
         input.addEventListener(
             'input',
-            () => this[propName] = event.target.value //12 dobieramy się do numberofusers// zmiana do zmiany 15
+            (event) => {
+                this[propName] = event.target.value //12 dobieramy się do numberofusers// zmiana do zmiany 15
+            this.render() // 16 wyrenderowanie 
+        }
 
         )         // 11co ma robić input
         this.container.appendChild(input)//8w czym umieszczony
