@@ -51,6 +51,7 @@ class App {
 
             const avatarDiv = document.createElement('div')
             const avatar = document.createElement('img')
+            const dataDiv = document.createElement('div')
             const nameDiv = document.createElement('div')
             const emailDiv = document.createElement('div')
 
@@ -60,9 +61,11 @@ class App {
 
             avatarDiv.appendChild(avatar)
 
+            dataDiv.appendChild(nameDiv)
+            dataDiv.appendChild(emailDiv)
+
             userDiv.appendChild(avatarDiv)
-            userDiv.appendChild(nameDiv)
-            userDiv.appendChild(emailDiv)
+            userDiv.appendChild(dataDiv)
 
             return userDiv
         }
