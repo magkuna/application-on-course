@@ -2,7 +2,7 @@ class App {
     constructor(selector){
         this.container = document.querySelector(selector ||document.body) // 1gdzie wyświetla
         this.numberOfUsers = 10 //2
-        this.genderOfUsers = '' //3
+        this.genderOfUsers = 'male' //3
         this.searchTerm = ''  //4
         this.users = null // 5zadeklarowana nazwa zmiennej ale nic narazie w niej nie ma
 
@@ -15,14 +15,14 @@ class App {
                                     
         
     }
-    renderInput(type,propName){ // 14 najpeirw type, potem name po kroku 13
+    renderInput(type,propName){ // 14 najpeirw type, potem name po kroku 13 (krok 15)
         const input = document.createElement('input') // 7tworzenie inputa
         input.setAttribute('type', type) // 9nadanie typu inputowi
-        input.value.this[propName]     //13przypisanie wartości this numberofusers //15 przypisanie własciwoani w obiekcie
+        input.value = this[propName]     //13przypisanie wartości this numberofusers //15 przypisanie własciwoani w obiekcie
 
         input.addEventListener(
             'input',
-            () => this.numberOfUsers = event.target.value //12 dobieramy się do numberofusers
+            () => this[propName] = event.target.value //12 dobieramy się do numberofusers// zmiana do zmiany 15
 
         )         // 11co ma robić input
         this.container.appendChild(input)//8w czym umieszczony
