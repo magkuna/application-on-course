@@ -45,28 +45,64 @@ class App {
         this.renderButton('Załaduj', this.loadUsers.bind(this)) // 19 odniesienie do renderButton // 24 odniesienie z loadUSers //  26 zmiana z samo load.. bo pokazywalo w console.logu Załąduj,              
         this.renderContent() // 40 zeby sie urochomiła funkcja rendercontent
     }
-    renderContent() { // 35 tworzenie nowego diva
+    renderContent() {// 35 tworzenie nowego diva
+        const renderUser = (user) => {
+            const userDiv = document.createElement('div')
+
+            const avatarDiv = document.createElement('div')
+            const avatar = document.createElement('img')
+            const nameDiv = document.createElement('div')
+            const emailDiv = document.createElement('div')
+
+            nameDiv.innerText = `${user.name.first} ${user.name.last}`
+            emailDiv.innerText = user.email
+            avatar.setAttribute('src', user.picture.thumbnail)
+
+            avatarDiv.appendChild(avatar)
+
+            userDiv.appendChild(avatarDiv)
+            userDiv.appendChild(nameDiv)
+            userDiv.appendChild(emailDiv)
+
+            return userDiv
+        }
+
+        const renderUsers = () => {
+            const usersContainerDiv = document.createElement('div')
+
+            this.users.forEach(
+                user => {
+                    const userDiv = document.createElement('div')
+                    userDiv.innerText = `${user.name.first} ${user.name.last}`
+                    usersContainerDiv.appendChild(renderUser(user)// 45 tworzenie całego for Each
+                    
+                    ) 
+
+                }
+            )
+            return usersContainerDiv
+        }
         const getContent = () => {  //42 tworzenie bo nie pokazuje się ładuje podczas ładowania stron//
-        
+
             if (this.isLoading) {
-                return "Ładuje..."  // 36 jeśli łąduje strone to do diva wcisnij ładuje//
+                return document.createTextNode("Ładuje...")  // 36 jeśli łąduje strone to do diva wcisnij ładuje//
             }
             if (this.isError) {
-               return 'Wystąpił błąd! Spróbuje ponownie!' // 37jeśli nie łąduje strone to do diva wcisnij ładuje//
+                return document.createTextNode('Wystąpił błąd! Spróbuje ponownie!') // 37jeśli nie łąduje strone to do diva wcisnij ładuje//
             }
             if (this.users === null) {
-                return 'Kliknij przycisk żeby załadować' // 38//
+                return document.createTextNode('Kliknij przycisk żeby załadować') // 38//
             }
             if (this.users && this.users.length === 0) {
-                return 'Nie ma żadnych użytkowników!' // 39//
+                return document.createTextNode('Nie ma żadnych użytkowników!') // 39//
             }
             if (this.users) {
-                return 'OK!'// 41 wyświetlanie komunikatu jesli załadowane//
+                return renderUsers() // 41 wyświetlanie komunikatu jesli załadowane// // 46 zmiana nazwy na renderUser()
             }
         }
         const div = document.createElement('div')// przeniesienie tego z góry tutaj, i dodatnie div innerTexy= get Content
 
-        div.innerText = getContent() // 
+        div.appendChild(getContent()) // 43
 
         this.container.appendChild(div)
     }
